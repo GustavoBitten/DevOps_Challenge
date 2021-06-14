@@ -1,12 +1,10 @@
-
-# Create the network VNET
 resource "azurerm_virtual_network" "devops-challenge-vnet" {
   name                = "devops-challenge-vnet"
   address_space       = [var.vnet_cidr]
   resource_group_name = azurerm_resource_group.devops-challenge-rg.name
   location            = azurerm_resource_group.devops-challenge-rg.location
 }
-# Create a subnet for VM
+
 resource "azurerm_subnet" "webserver-subnet" {
   name                 = "webserver-subnet"
   address_prefixes     = [var.webserver_subnet_cidr]
@@ -49,7 +47,6 @@ resource "azurerm_subnet_network_security_group_association" "webserver-nsg-asso
   network_security_group_id = azurerm_network_security_group.webserver-nsg.id
 }
 
-# Get a Static Public IP
 resource "azurerm_public_ip" "webserver-public-ip" {
   name                = "webserver-public-ip"
   location            = azurerm_resource_group.devops-challenge-rg.location
@@ -57,7 +54,6 @@ resource "azurerm_public_ip" "webserver-public-ip" {
   allocation_method   = "Static"
 }
 
-# Create Network Card for the VM
 resource "azurerm_network_interface" "webserver-nic" {
   name                = "webserver-nic"
   location            = azurerm_resource_group.devops-challenge-rg.location
