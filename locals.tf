@@ -33,6 +33,6 @@ locals {
   })
 
   custom_script_settings = jsonencode({
-    "script" : "${base64encode(templatefile("script/setup_webserver_after_deploy.sh",{}))}"
+    "script" : "${base64encode(templatefile("script/setup_webserver_after_deploy.sh", {}))}"
   })
 }

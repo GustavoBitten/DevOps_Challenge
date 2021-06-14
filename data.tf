@@ -11,8 +11,8 @@ data "azurerm_storage_account_sas" "sas_to_storage_webserver_logs" {
 
   services {
     blob  = true
-    queue = false
     table = true
+    queue = false
     file  = false
   }
 

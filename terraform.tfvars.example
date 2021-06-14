@@ -1,0 +1,11 @@
+# Azure authentication variables - by service principal
+
+azure_subscription_id = ""
+azure_client_id       = ""
+azure_client_secret   = ""
+azure_tenant_id       = ""
+
+# Webserver access 
+
+webserver_admin_username = ""
+webserver_admin_password = ""

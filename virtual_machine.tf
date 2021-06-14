@@ -6,8 +6,8 @@ resource "azurerm_linux_virtual_machine" "webserver" {
   network_interface_ids = [azurerm_network_interface.webserver-nic.id]
   size                  = var.webserver_size
   source_image_reference {
-    publisher = var.ubuntu-publisher
-    offer     = var.ubuntu-offer
+    publisher = "Canonical"
+    offer     = "UbuntuServer"
     sku       = "18.04-LTS"
     version   = "latest"
   }
@@ -18,13 +18,9 @@ resource "azurerm_linux_virtual_machine" "webserver" {
   }
   computer_name  = "webserver"
   admin_username = var.webserver_admin_username
+  admin_password = var.webserver_admin_password
 
-  disable_password_authentication = true
-  admin_ssh_key {
-    username   = var.webserver_admin_username
-    public_key = file("~/.ssh/id_rsa.pub")
-  }
-
+  disable_password_authentication = false
 }
 
 resource "azurerm_virtual_machine_extension" "custom_script_webserver" {
@@ -35,7 +31,6 @@ resource "azurerm_virtual_machine_extension" "custom_script_webserver" {
   type_handler_version = "2.0"
 
   settings = local.custom_script_settings
-
 }
 
 resource "azurerm_virtual_machine_extension" "linux_diagnostic_webserver" {
@@ -56,6 +51,6 @@ resource "null_resource" "test_port_80" {
     custom_script_webserver = azurerm_virtual_machine_extension.custom_script_webserver.id
   }
   provisioner "local-exec" {
-    command = "curl -Is ${azurerm_public_ip.webserver-public-ip.ip_address}:80"
+    command = "echo 'if the test result is positive, the result will appear below.' & curl -Is ${azurerm_public_ip.webserver-public-ip.ip_address}:80"
   }
 }

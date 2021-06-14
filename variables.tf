@@ -54,16 +54,6 @@ variable "webserver_admin_password" {
   type        = string
 }
 
-variable "ubuntu-publisher" {
-  type        = string
-  description = "Publisher ID for Ubuntu Linux"
-  default     = "Canonical"
-}
-variable "ubuntu-offer" {
-  type        = string
-  description = "Offer ID for Ubuntu Linux"
-  default     = "UbuntuServer"
-}
 
 
 
