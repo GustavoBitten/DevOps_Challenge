@@ -26,13 +26,13 @@ variable "location" {
 }
 
 # network variables
-variable "vnet-cidr" {
+variable "vnet_cidr" {
   type        = string
   description = "The CIDR of the network VNET"
   default     = "10.10.0.0/16"
 }
 
-variable "webserver-subnet-cidr" {
+variable "webserver_subnet_cidr" {
   type        = string
   description = "The CIDR for the network subnet"
   default     = "10.10.1.0/24"

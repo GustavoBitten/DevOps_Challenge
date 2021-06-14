@@ -2,14 +2,14 @@
 # Create the network VNET
 resource "azurerm_virtual_network" "devops-challenge-vnet" {
   name                = "devops-challenge-vnet"
-  address_space       = [var.vnet-cidr]
+  address_space       = [var.vnet_cidr]
   resource_group_name = azurerm_resource_group.devops-challenge-rg.name
   location            = azurerm_resource_group.devops-challenge-rg.location
 }
 # Create a subnet for VM
 resource "azurerm_subnet" "webserver-subnet" {
   name                 = "webserver-subnet"
-  address_prefixes     = [var.webserver-subnet-cidr]
+  address_prefixes     = [var.webserver_subnet_cidr]
   virtual_network_name = azurerm_virtual_network.devops-challenge-vnet.name
   resource_group_name  = azurerm_resource_group.devops-challenge-rg.name
 }
